@@ -1,6 +1,8 @@
 package com.example.itime;
 
-public class Clock {
+import java.io.Serializable;
+
+public class Clock implements Serializable {
 
 
     private String name;
