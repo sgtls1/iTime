@@ -7,12 +7,12 @@ public class Clock implements Serializable {
 
     private String name;
     private String content;
-    private int ClockeId;
+    private int ClockId;
 
     public Clock(String name, String content, int clockeId) {
         this.name = name;
         this.content = content;
-        ClockeId = clockeId;
+        ClockId = clockeId;
     }
 
     public String getName() {
@@ -32,10 +32,10 @@ public class Clock implements Serializable {
     }
 
     public int getClockeId() {
-        return ClockeId;
+        return ClockId;
     }
 
     public void setClockeId(int clockeId) {
-        ClockeId = clockeId;
+        ClockId = clockeId;
     }
 }

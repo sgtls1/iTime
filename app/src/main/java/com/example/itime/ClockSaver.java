@@ -15,17 +15,17 @@ public class ClockSaver {
 
     Context context;
 
-    public ArrayList<Clock> getBooks() {
-        return books;
+    public ArrayList<Clock> getClock() {
+        return clocks;
     }
 
-    ArrayList<Clock> books=new ArrayList<Clock>();
+    ArrayList<Clock> clocks=new ArrayList<Clock>();
     public static void save(){
         try{
             ObjectOutputStream outputStream=new ObjectOutputStream(
                     context.openFileOutput("Serializable.txt",Context.MODE_PRIVATE)
             );
-            outputStream.writeObject(books);
+            outputStream.writeObject(clocks);
             outputStream.close();
 
         }
@@ -39,7 +39,7 @@ public class ClockSaver {
         try{
             ObjectInputStream inputStream = new ObjectInputStream(
                     context.openFileInput("Serializable.txt"));
-            books= (ArrayList<Clock>) inputStream.readObject();
+            clocks= (ArrayList<Clock>) inputStream.readObject();
             inputStream.close();
 
 
@@ -49,7 +49,7 @@ public class ClockSaver {
             e.printStackTrace();
 
         }
-        return  books;
+        return  clocks;
 
     }
 }
