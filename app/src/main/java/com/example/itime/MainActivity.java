@@ -1,8 +1,10 @@
 package com.example.itime;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import android.view.View;
@@ -20,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,12 +30,18 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    private List<Book> ListBooks=new ArrayList<>();
-    BookSaver bookSaver;
-    private BookAdapter adapter
+    private List<Clock> ListClocks=new ArrayList<>();
+    private ListView listViewClocks;
+    ClockSaver clockSaver;
+    private ClockAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        listViewClocks= (ListView) this.findViewById(R.id.add);
+
+        adapter = new ClockAdapter(
+                MainActivity.this,R.layout.listview_item_clock, (ArrayList<Clock>) ListClocks);
+        listViewClocks.setAdapter(adapter);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -76,5 +85,13 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         ClockSaver.save();
     }
+    class ClockAdapter extends ArrayAdapter<Clock> {
 
+        private int resourceId;
+
+        public ClockAdapter(Context context, int resource, List<Clock> objects) {
+            super(context, resource, objects);
+            resourceId = resource;
+        }
+    }
 }
