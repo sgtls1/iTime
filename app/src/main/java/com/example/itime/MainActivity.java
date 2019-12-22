@@ -3,12 +3,15 @@ package com.example.itime;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -22,7 +25,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        ClockSaver.save();
+        clockSaver.save();
     }
     class ClockAdapter extends ArrayAdapter<Clock> {
 
@@ -92,6 +97,16 @@ public class MainActivity extends AppCompatActivity {
         public ClockAdapter(Context context, int resource, List<Clock> objects) {
             super(context, resource, objects);
             resourceId = resource;
+        }
+        @NonNull
+        @Override
+        public View getView(int position,  View convertView,  ViewGroup parent) {
+            Clock clock = getItem(position);//获取当前项的实例
+            View view = LayoutInflater.from(getContext()).inflate(resourceId, parent, false);
+            ((ImageView) view.findViewById(R.id.image_view_book_cover)).setImageResource(clock.getClockeId());
+            ((TextView) view.findViewById(R.id.text_view_book_title)).setText(clock.getName());
+            ((TextView) view.findViewById(R.id.text_view_book_price)).setText(clock.getContent());
+            return view;
         }
     }
 }

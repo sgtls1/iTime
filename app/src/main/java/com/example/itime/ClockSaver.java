@@ -7,7 +7,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Objects;
-
 public class ClockSaver {
     public ClockSaver(Context context) {
         this.context = context;
@@ -20,7 +19,7 @@ public class ClockSaver {
     }
 
     ArrayList<Clock> clocks=new ArrayList<Clock>();
-    public static void save(){
+    public  void save(){
         try{
             ObjectOutputStream outputStream=new ObjectOutputStream(
                     context.openFileOutput("Serializable.txt",Context.MODE_PRIVATE)

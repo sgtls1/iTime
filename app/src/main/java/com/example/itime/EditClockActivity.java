@@ -20,8 +20,8 @@ public class EditClockActivity extends AppCompatActivity {
 
         buttonOK=(Button)findViewById(R.id.button_ok);
         buttonCancel=(Button)findViewById(R.id.button_cancel);
-        editClockContent=(EditText)findViewById(R.id.edit_view_Clock_content);
-        editTextClockTitle=(EditText)findViewById(R.id.edit_view_Clock_title);
+        editClockContent=(EditText)findViewById(R.id.edit_view_book_price);
+        editTextClockTitle=(EditText)findViewById(R.id.edit_view_book_title);
 
         editTextClockTitle.setText(getIntent().getStringExtra("title"));
         
