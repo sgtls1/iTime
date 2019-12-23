@@ -33,6 +33,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    public static final int REQUEST_CODE = 901;
+    public static final int CODE = REQUEST_CODE;
+    public static final int REQUEST_CODE1 = CODE;
+    public static final int REQUEST_CODE2 = 902;
 
     private AppBarConfiguration mAppBarConfiguration;
     private List<Clock> ListClocks=new ArrayList<>();
@@ -42,23 +46,51 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        listViewClocks= (ListView) this.findViewById(R.id.add);
+        listViewClocks= (ListView) this.findViewById(R.id.clock_list);
 
+        ListClocks=clockSaver.load();
+
+        if(ListClocks.size()==0)
+        { init();}
         adapter = new ClockAdapter(
                 MainActivity.this,R.layout.listview_item_clock, (ArrayList<Clock>) ListClocks);
         listViewClocks.setAdapter(adapter);
+
+        listViewClocks.setOnItemClickListener(new OnItemClickListener() {
+
+            @Override
+
+            public void onItemClick(AdapterView<?> arg0, View view, int arg2,long arg3) {
+                Intent intent = new Intent(MainActivity.this, EditClockActivity.class);
+                intent.putExtra("name", "无名");
+                intent.putExtra("insert_position","无名");
+                intent.putExtra("content","备注");
+                startActivityForResult(intent, REQUEST_CODE2);
+
+            }
+        });
+
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        //点击按钮新增闹钟
         FloatingActionButton add = findViewById(R.id.add);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, EditClockActivity.class);
+                intent.putExtra("name", "无名");
+
+                intent.putExtra("insert_position","无名");
+                intent.putExtra("content","备注");
                 startActivityForResult(intent,901);
 
             }
         });
+
+       //导航栏
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
 
@@ -85,10 +117,47 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+
+    public List<Clock> getListClocks(){
+        return ListClocks;
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case REQUEST_CODE1:
+                if (resultCode == RESULT_OK) {
+                    String name=data.getStringExtra("title");
+                    int insertPosition=data.getIntExtra("insert_position",0);
+                    String content=data.getStringExtra("price");
+                    getListClocks().add(insertPosition, new Clock(name,content,R.drawable.time));
+
+                    adapter.notifyDataSetChanged();
+                }
+                break;
+            case REQUEST_CODE2:
+                if (resultCode == RESULT_OK) {
+                    int insertPosition=data.getIntExtra("insert_position",0);
+                    Clock bookAtPosition=getListClocks().get(insertPosition);
+                    bookAtPosition.setName(data.getStringExtra("title"));
+                    bookAtPosition.setContent(data.getStringExtra("content"));
+                    adapter.notifyDataSetChanged();
+                }
+                break;
+        }
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();
         clockSaver.save();
+    }
+
+    private void init() {
+
+        ListClocks.add(new Clock("春节", "新年快乐",R.drawable.time));
+
+
     }
     class ClockAdapter extends ArrayAdapter<Clock> {
 

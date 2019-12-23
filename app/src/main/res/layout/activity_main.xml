@@ -22,7 +22,7 @@
         app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/activity_main_drawer" />
     <ListView
-        android:id="@+id/add"
+        android:id="@+id/clock_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="0dp"

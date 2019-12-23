@@ -16,5 +16,18 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="RippleViewStyle">
+        <item name="android:background">?selectableItemBackground</item>
+        <item name="android:clickable">true</item>
+    </style>
+    <style name="MaterialImage48DP">
+        <item name="android:padding">4.0dip</item>
+        <item name="android:layout_width">48.0dip</item>
+        <item name="android:layout_height">48.0dip</item>
 
+    </style>
+    <style name="MaterialTextTitle">
+        <item name="android:textSize">16.0sp</item>
+        <item name="android:textColor">#ff000000</item>
+    </style>
 </resources>
