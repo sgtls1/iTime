@@ -46,8 +46,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         listViewClocks= (ListView) this.findViewById(R.id.clock_list);
-
+        clockSaver=new ClockSaver(this);
         ListClocks=clockSaver.load();
 
         if(ListClocks.size()==0)
@@ -56,14 +59,14 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this,R.layout.listview_item_clock, (ArrayList<Clock>) ListClocks);
         listViewClocks.setAdapter(adapter);
 
-        listViewClocks.setOnItemClickListener(new OnItemClickListener() {
+        listViewClocks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
 
-            public void onItemClick(AdapterView<?> arg0, View view, int arg2,long arg3) {
+            public void onItemClick(AdapterView<?> arg0, View view, int position,long arg3) {
                 Intent intent = new Intent(MainActivity.this, EditClockActivity.class);
                 intent.putExtra("name", "无名");
-                intent.putExtra("insert_position","无名");
+                intent.putExtra("insert_position",position);
                 intent.putExtra("content","备注");
                 startActivityForResult(intent, REQUEST_CODE2);
 
@@ -71,9 +74,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
 
         //点击按钮新增闹钟
         FloatingActionButton add = findViewById(R.id.add);
@@ -83,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, EditClockActivity.class);
                 intent.putExtra("name", "无名");
 
-                intent.putExtra("insert_position","无名");
+                intent.putExtra("insert_position",1);
                 intent.putExtra("content","备注");
                 startActivityForResult(intent,901);
 
@@ -128,9 +129,9 @@ public class MainActivity extends AppCompatActivity {
         switch (requestCode) {
             case REQUEST_CODE1:
                 if (resultCode == RESULT_OK) {
-                    String name=data.getStringExtra("title");
+                    String name=data.getStringExtra("name");
                     int insertPosition=data.getIntExtra("insert_position",0);
-                    String content=data.getStringExtra("price");
+                    String content=data.getStringExtra("content");
                     getListClocks().add(insertPosition, new Clock(name,content,R.drawable.time));
 
                     adapter.notifyDataSetChanged();
@@ -140,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
                 if (resultCode == RESULT_OK) {
                     int insertPosition=data.getIntExtra("insert_position",0);
                     Clock bookAtPosition=getListClocks().get(insertPosition);
-                    bookAtPosition.setName(data.getStringExtra("title"));
+                    bookAtPosition.setName(data.getStringExtra("name"));
                     bookAtPosition.setContent(data.getStringExtra("content"));
                     adapter.notifyDataSetChanged();
                 }
@@ -172,9 +173,9 @@ public class MainActivity extends AppCompatActivity {
         public View getView(int position,  View convertView,  ViewGroup parent) {
             Clock clock = getItem(position);//获取当前项的实例
             View view = LayoutInflater.from(getContext()).inflate(resourceId, parent, false);
-            ((ImageView) view.findViewById(R.id.image_view_book_cover)).setImageResource(clock.getClockeId());
-            ((TextView) view.findViewById(R.id.text_view_book_title)).setText(clock.getName());
-            ((TextView) view.findViewById(R.id.text_view_book_price)).setText(clock.getContent());
+            ((ImageView) view.findViewById(R.id.image_view_clock_cover)).setImageResource(clock.getClockeId());
+            ((TextView) view.findViewById(R.id.text_view_clock_name)).setText(clock.getName());
+
             return view;
         }
     }
