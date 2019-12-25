@@ -1,6 +1,7 @@
 package com.example.itime;
 
 import java.io.Serializable;
+import java.util.Calendar;
 
 public class Clock implements Serializable {
 
@@ -9,10 +10,14 @@ public class Clock implements Serializable {
     private String content;
     private int ClockId;
 
+
+
+    private Calendar calendar;
     public Clock(String name, String content, int clockeId) {
         this.name = name;
         this.content = content;
         ClockId = clockeId;
+
     }
 
 
@@ -39,5 +44,12 @@ public class Clock implements Serializable {
 
     public void setClockeId(int clockeId) {
         ClockId = clockeId;
+    }
+    public Calendar getCalendar() {
+        return calendar;
+    }
+
+    public void setCalendar(Calendar calendar) {
+        this.calendar = calendar;
     }
 }

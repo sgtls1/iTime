@@ -30,6 +30,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -43,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
     private ListView listViewClocks;
     ClockSaver clockSaver;
     private ClockAdapter adapter;
+    private Calendar now;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,10 +67,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
 
             public void onItemClick(AdapterView<?> arg0, View view, int position,long arg3) {
-                Intent intent = new Intent(MainActivity.this, EditClockActivity.class);
-                intent.putExtra("name", "无名");
+                Intent intent = new Intent(MainActivity.this, showClockActivity.class);
+                intent.putExtra("name", ListClocks.get(position).getName());
                 intent.putExtra("insert_position",position);
-                intent.putExtra("content","备注");
+                intent.putExtra("content",ListClocks.get(position).getContent());
+
                 startActivityForResult(intent, REQUEST_CODE2);
 
             }
@@ -86,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
                 intent.putExtra("insert_position",1);
                 intent.putExtra("content","备注");
+
                 startActivityForResult(intent,901);
 
             }
@@ -140,9 +145,10 @@ public class MainActivity extends AppCompatActivity {
             case REQUEST_CODE2:
                 if (resultCode == RESULT_OK) {
                     int insertPosition=data.getIntExtra("insert_position",0);
-                    Clock bookAtPosition=getListClocks().get(insertPosition);
-                    bookAtPosition.setName(data.getStringExtra("name"));
-                    bookAtPosition.setContent(data.getStringExtra("content"));
+                    Clock clockAtPosition=getListClocks().get(insertPosition);
+                    clockAtPosition.setName(data.getStringExtra("name"));
+                    clockAtPosition.setContent(data.getStringExtra("content"));
+
                     adapter.notifyDataSetChanged();
                 }
                 break;
@@ -172,10 +178,11 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public View getView(int position,  View convertView,  ViewGroup parent) {
             Clock clock = getItem(position);//获取当前项的实例
+
             View view = LayoutInflater.from(getContext()).inflate(resourceId, parent, false);
             ((ImageView) view.findViewById(R.id.image_view_clock_cover)).setImageResource(clock.getClockeId());
             ((TextView) view.findViewById(R.id.text_view_clock_name)).setText(clock.getName());
-
+            ((TextView) view.findViewById(R.id.text_view_clock_time)).setText("2019年1月1日");
             return view;
         }
     }

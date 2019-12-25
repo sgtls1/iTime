@@ -31,7 +31,8 @@ public class EditClockActivity extends AppCompatActivity {
     private int insertPosition;
     private DatePickerDialog datePickerDialog;
     private TimePickerDialog timePickerDialog;
-    private Calendar calendar;
+    private Calendar calendar,calendar2;
+    private String time1,Date1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +56,7 @@ public class EditClockActivity extends AppCompatActivity {
         editClockContent.setText(getIntent().getStringExtra("content"));
         insertPosition = getIntent().getIntExtra("insert_position", 0);
 
+
         buttonOK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,6 +64,7 @@ public class EditClockActivity extends AppCompatActivity {
                 intent.putExtra("name", editTextClockTitle.getText().toString());
                 intent.putExtra("insert_position", insertPosition);
                 intent.putExtra("content", editClockContent.getText().toString());
+
                 setResult(RESULT_OK, intent);
                 EditClockActivity.this.finish();
             }

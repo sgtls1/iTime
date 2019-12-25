@@ -20,7 +20,7 @@
                             android:layout_marginLeft="72.0dip"
                             android:layout_marginTop="16.0dip"
                             android:layout_marginRight="16.0dip"
-                            android:text="title" />
+                            android:text="Title" />
                         <EditText
                             android:textColor="@color/white"
                             android:textColorHint="@color/white"
@@ -43,7 +43,7 @@
                             android:layout_marginLeft="72.0dip"
                             android:layout_marginTop="16.0dip"
                             android:layout_marginRight="16.0dip"
-                            android:text="content" />
+                            android:text="Content" />
                         <EditText
                             android:textColor="@color/white"
                             android:textColorHint="@color/white"
@@ -61,52 +61,50 @@
             </LinearLayout>
             <androidx.appcompat.widget.Toolbar android:theme="@style/AppTheme.AppBarOverlay" android:gravity="top" android:id="@+id/mToolbar"  android:fitsSystemWindows="false" android:layout_width="fill_parent" android:layout_height="?actionBarSize" app:layout_collapseMode="pin" />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
-    </com.google.android.material.appbar.AppBarLayout><![CDATA[
-
-
-
-
-
-
-
-    \
-    app:layout_constraintTop_toBottomOf="@+id/text_view_book_price" />
-
-
-
-    ]]>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <Button
         android:id="@+id/button_ok"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginRight="36dp"
-        android:background="#6699ff"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/button_circle_shape"
         android:text="确定"
+        app:layout_constraintEnd_toStartOf="@+id/button_cancel"
         app:layout_constraintRight_toLeftOf="@+id/button_cancel"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/button_cancel" />
 
     <Button
         android:id="@+id/button_cancel"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginRight="24dp"
+        android:layout_marginEnd="40dp"
+
+        android:layout_marginRight="40dp"
         android:layout_marginBottom="136dp"
-        android:background="#6699ff"
+        android:background="@drawable/button_circle_shape"
+
         android:text="取消"
         app:layout_constraintBottom_toBottomOf="parent"
-
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
     <Button
         android:id="@+id/button_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
         android:layout_marginBottom="50dp"
         android:background="#6699ff"
         android:text="选择日期"
         app:layout_constraintBottom_toTopOf="@+id/button_time"
+
         app:layout_constraintStart_toStartOf="@+id/button_time"
+        app:layout_constraintTop_toBottomOf="@+id/main_app_bar"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -126,10 +124,12 @@
         android:id="@+id/date_text"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
         android:layout_marginBottom="75dp"
         android:text="Day"
         app:layout_constraintBottom_toTopOf="@+id/time_text"
         app:layout_constraintStart_toStartOf="@+id/time_text"
+        app:layout_constraintTop_toBottomOf="@+id/main_app_bar"
         tools:ignore="MissingConstraints" />
 
     <TextView
