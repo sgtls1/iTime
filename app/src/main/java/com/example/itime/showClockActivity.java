@@ -35,13 +35,8 @@ public class showClockActivity extends AppCompatActivity {
     String name, content, str, countdown;
     private int insertPosition;
     public static final int RESULT_DELETE = 903;
-<<<<<<< HEAD
     long qq;
     String pp;
-=======
-    long time;
-    String text;
->>>>>>> origin/master
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -56,17 +51,10 @@ public class showClockActivity extends AppCompatActivity {
         insertPosition = getIntent().getIntExtra("insert_position", 0);
         content = getIntent().getStringExtra("content");
         countdown = getIntent().getStringExtra("countdown");
-<<<<<<< HEAD
         long mm = getIntent().getLongExtra("ms", 0);
         String ss = stringForTime(mm);
         clock.setText(ss);
         qq = mm;
-=======
-        long total= getIntent().getLongExtra("ms", 0);
-        String str = stringForTime(total);
-        clock.setText(str);
-        time = total;
->>>>>>> origin/master
 
 
         this.mess_menu.getMenu().findItem(R.id.clock_name).setTitle(name);
@@ -77,11 +65,7 @@ public class showClockActivity extends AppCompatActivity {
         final Handler handler = new Handler ( ) {
             public void handleMessage(Message msg) {
                 //计算剩余时间
-<<<<<<< HEAD
                 clock.setText(pp);
-=======
-                clock.setText(text);
->>>>>>> origin/master
                 super.handleMessage (msg);
             }
         };
@@ -91,13 +75,8 @@ public class showClockActivity extends AppCompatActivity {
                 try {
                     while (true) {
                         Message msg = new Message ( );
-<<<<<<< HEAD
                         qq=qq-1000;
                         pp=stringForTime(qq);
-=======
-                        time=time-1000;
-                        text=stringForTime(time);
->>>>>>> origin/master
                         handler.sendMessage (msg);
                         Thread.sleep (1000);
                     }
@@ -118,7 +97,6 @@ public class showClockActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.day_mess_toolbar_menu, menu);
         return true;
     }
-<<<<<<< HEAD
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
@@ -145,9 +123,6 @@ public class showClockActivity extends AppCompatActivity {
 
         }
     }
-=======
-
->>>>>>> origin/master
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -176,19 +151,11 @@ public class showClockActivity extends AppCompatActivity {
 
             Intent intent = new Intent(showClockActivity.this, EditClockActivity.class);
             intent.putExtra("name", name);
-<<<<<<< HEAD
             intent.putExtra("insert_position",insertPosition);
             intent.putExtra("content",content);
             intent.putExtra("countdown",countdown);
             startActivityForResult(intent,904);
 
-=======
-
-            intent.putExtra("content",content);
-            intent.putExtra("countdown",countdown);
-            startActivityForResult(intent,901);
-            showClockActivity.this.finish();
->>>>>>> origin/master
         }else if(id == R.id.clock_back){
             showClockActivity.this.finish();
         }
