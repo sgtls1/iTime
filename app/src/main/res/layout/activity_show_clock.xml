@@ -18,16 +18,28 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="?actionBarSize"
-                app:navigationIcon="@drawable/ic_arrow_back_white_24dp"
+
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
+            <TextView
+                android:id="@+id/textView_interval2"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:background="@null"
 
+                android:shadowColor="@color/colorAccent"
+                android:text="TextView"
+                android:textColor="@android:color/background_light"
+                android:textSize="30.0sp"
 
-
+                app:autoSizeTextType="none" />
 
 
         </FrameLayout>
+
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/show_menu"
             android:layout_width="fill_parent"

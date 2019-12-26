@@ -11,8 +11,8 @@
     <item android:title="Option">
         <menu>
             <item android:icon="@drawable/ic_menu_manage" android:id="@+id/clock_alarm" android:title="Notification" app:actionLayout="@layout/switch_item" app:showAsAction="always" />
-            <item android:icon="@drawable/ic_menu_manage" android:id="@+id/clock_calendar" android:title="Show in calendar" app:actionLayout="@layout/switch_item" app:showAsAction="always" />
-            <item android:icon="@drawable/ic_menu_manage" android:id="@+id/clock_IconShortCut" android:title="IconShortCut" app:actionLayout="@layout/switch_item" app:showAsAction="always" />
+            <item android:icon="@drawable/ic_menu_gallery" android:id="@+id/clock_calendar" android:title="Show in calendar" app:actionLayout="@layout/switch_item" app:showAsAction="always" />
+            <item android:icon="@drawable/ic_menu_settings" android:id="@+id/clock_IconShortCut" android:title="IconShortCut" app:actionLayout="@layout/switch_item" app:showAsAction="always" />
         </menu>
     </item>
 </menu>

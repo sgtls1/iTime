@@ -2,25 +2,47 @@ package com.example.itime;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
+
 
 public class Clock implements Serializable {
 
 
     private String name;
     private String content;
+    private String countdown;
+    private String daoshu;
     private int ClockId;
-
-
-
     private Calendar calendar;
-    public Clock(String name, String content, int clockeId) {
+    public Clock(String name, String content, int clockeId, String countdown,String daoshu) {
         this.name = name;
         this.content = content;
         ClockId = clockeId;
-
+        this.countdown=countdown;
+        this.daoshu=daoshu;
+    }
+    public String getCountdown() {
+        return countdown;
     }
 
+    public void setCountdown(String countdown) {
+        this.countdown = countdown;
+    }
+    public String getDaoshu() {
+        return daoshu;
+    }
 
+    public void setDaoshu(String daoshu) {
+        this.daoshu = daoshu;
+    }
+    public int getClockId() {
+        return ClockId;
+    }
+
+    public void setClockId(int clockId) {
+        ClockId = clockId;
+    }
 
     public String getName() {
         return name;
@@ -38,13 +60,6 @@ public class Clock implements Serializable {
         this.content = content;
     }
 
-    public int getClockeId() {
-        return ClockId;
-    }
-
-    public void setClockeId(int clockeId) {
-        ClockId = clockeId;
-    }
     public Calendar getCalendar() {
         return calendar;
     }
