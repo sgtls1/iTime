@@ -61,7 +61,7 @@
             </LinearLayout>
             <androidx.appcompat.widget.Toolbar android:theme="@style/AppTheme.AppBarOverlay" android:gravity="top" android:id="@+id/mToolbar"  android:fitsSystemWindows="false" android:layout_width="fill_parent" android:layout_height="?actionBarSize" app:layout_collapseMode="pin" />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
-    </com.google.android.material.appbar.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout><![CDATA[
 
 
 
@@ -69,30 +69,93 @@
 
 
 
-    <Button
-        android:id="@+id/button_ok"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="确定"
-
-        android:layout_marginRight="52dp"
-        app:layout_constraintTop_toTopOf="@+id/button_cancel"
-        android:layout_marginTop="0dp"
-        app:layout_constraintRight_toLeftOf="@+id/button_cancel" />
     \
     app:layout_constraintTop_toBottomOf="@+id/text_view_book_price" />
 
+
+
+    ]]>
+
+    <Button
+        android:id="@+id/button_ok"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="36dp"
+        android:background="#6699ff"
+        android:text="确定"
+        app:layout_constraintRight_toLeftOf="@+id/button_cancel"
+        app:layout_constraintTop_toTopOf="@+id/button_cancel" />
+
     <Button
         android:id="@+id/button_cancel"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginRight="88dp"
-
-        android:layout_marginBottom="40dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="136dp"
+        android:background="#6699ff"
         android:text="取消"
         app:layout_constraintBottom_toBottomOf="parent"
 
         app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
+        android:id="@+id/button_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:background="#6699ff"
+        android:text="选择日期"
+        app:layout_constraintBottom_toTopOf="@+id/button_time"
+        app:layout_constraintStart_toStartOf="@+id/button_time"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/button_time"
+        android:layout_width="88dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="80dp"
+        android:background="#6699ff"
+        android:text="选择时间"
+        app:layout_constraintBottom_toTopOf="@+id/button_ok"
+        app:layout_constraintStart_toStartOf="@+id/button_ok"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/date_text"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="75dp"
+        android:text="Day"
+        app:layout_constraintBottom_toTopOf="@+id/time_text"
+        app:layout_constraintStart_toStartOf="@+id/time_text"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/time_text"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginBottom="90dp"
+        android:text="Time"
+        app:layout_constraintBottom_toTopOf="@+id/button_cancel"
+        app:layout_constraintStart_toEndOf="@+id/button_time"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/button_delete"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="#ff0000"
+        android:text="删除倒计时"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/button_cancel"
+        app:layout_constraintStart_toStartOf="@+id/button_ok"
+        app:layout_constraintTop_toBottomOf="@+id/button_ok"
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
